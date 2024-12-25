@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 function App() {
   const [city, setCity] = useState(""); // User input city
   const [weatherData, setWeatherData] = useState(null); // Weather data to display
   const [error, setError] = useState(""); // Error handling
-
   const apiKey = "0f3f4fb90b44404da01184927241912"; // Your API Key
-
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
-
   const fetchWeather = async () => {
     if (!city) {
       setError("Please enter a city.");
       return;
     }
-    setError(""); // Clear previous error
-
+    setError(""); 
     try {
       const response = await axios.get(
         `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`
